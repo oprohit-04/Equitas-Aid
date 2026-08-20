@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equitas Aid | Apna Haq Jaano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a3c6e;
+  --navy-dark: #102850;
+  --navy-light: #254d8a;
+  --gold: #c9a84c;
+  --gold-light: #f5dfa0;
+  --gold-pale: #fdf6e3;
+  --white: #ffffff;
+  --bg: #f4f7fb;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --shadow-sm: 0 2px 8px rgba(26,60,110,0.08);
+  --shadow: 0 8px 30px rgba(26,60,110,0.12);
+  --shadow-lg: 0 20px 60px rgba(26,60,110,0.18);
+  --radius: 16px;
+  --radius-lg: 24px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+h1,h2,h3,h4 { font-family: "Poppins", sans-serif; line-height: 1.25; }
+
+img { max-width: 100%; }
+
+a { text-decoration: none; }
+
+/* ─── UTILITY ─── */
+.container { max-width: 1160px; margin: auto; padding: 0 24px; }
+.section { padding: 100px 0; }
+.section-alt { background: white; }
+
+.badge {
+  display: inline-block;
+  background: var(--gold-pale);
+  color: var(--gold);
+  border: 1px solid var(--gold-light);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+  font-family: "Poppins", sans-serif;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title h2 {
+  font-size: 36px;
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.section-title p {
+  color: var(--muted);
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.gold-line {
+  width: 60px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 2px;
+  margin: 14px auto 0;
+}
+
+/* ─── FADE ANIMATION ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── NAVBAR ─── */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(26,60,110,0.08);
+  transition: box-shadow 0.3s;
+}
+
+nav.scrolled { box-shadow: var(--shadow); }
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+  background: var(--navy);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logo-main {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--navy);
+  letter-spacing: -0.3px;
+}
+
+.logo-sub {
+  font-size: 10px;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-links a {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--muted);
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: var(--navy);
+  background: #eef3ff;
+}
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--navy);
+  color: white;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.lang-btn:hover { background: var(--navy-dark); }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  display: block;
+  transition: 0.3s;
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-light) 100%);
+  padding: 160px 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(201,168,76,0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 40%);
+}
+
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: repeating-linear-gradient(
+    45deg,
+    white 0, white 1px,
+    transparent 0, transparent 50%
+  );
+  background-size: 30px 30px;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-left { color: white; }
+
+.hero-left .badge {
+  background: rgba(201,168,76,0.15);
+  color: var(--gold-light);
+  border-color: rgba(201,168,76,0.3);
+}
+
+.hero-left h1 {
+  font-size: 56px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+
+.hero-left h1 span { color: var(--gold); }
+
+.hero-sub {
+  font-size: 17px;
+  opacity: 0.85;
+  margin-bottom: 36px;
+  max-width: 440px;
+}
+
+.helpline-block {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 16px 24px;
+  margin-bottom: 28px;
+}
+
+.helpline-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  font-weight: 600;
+}
+
+.helpline-num {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--gold);
+  font-family: "Poppins", sans-serif;
+  line-height: 1;
+}
+
+.btn-group { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold);
+  color: #1a1a1a;
+  padding: 14px 28px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  transition: all 0.25s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(201,168,76,0.35);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255,255,255,0.3);
+  padding: 14px 28px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  border-color: white;
+  background: rgba(255,255,255,0.07);
+}
+
+/* Hero Card */
+.hero-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-card-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--gold-pale);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.hero-card-header h3 {
+  color: var(--navy);
+  font-size: 18px;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.stat {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.stat-num {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.feature-list { list-style: none; }
+
+.feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.feature-list li:last-child { border-bottom: none; }
+
+.check { color: #22c55e; font-size: 16px; }
+
+/* ─── STEPS ─── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+.steps-grid::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--navy));
+  opacity: 0.25;
+}
+
+.step-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.step-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  border-color: var(--gold-light);
+}
+
+.step-num {
+  width: 56px;
+  height: 56px;
+  background: var(--navy);
+  color: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+  font-family: "Poppins", sans-serif;
+  margin: 0 auto 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.step-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.step-card h3 {
+  color: var(--navy);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.step-card p { color: var(--muted); font-size: 14px; }
+
+/* ─── DIRECTORY ─── */
+.dir-wrap {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow);
+}
+
+.dir-top {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  margin-bottom: 28px;
+}
+
+.form-group { flex: 1; }
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--navy);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.styled-select {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  font-family: "Noto Sans", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.styled-select:focus { border-color: var(--navy); }
+
+.dir-result {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  display: none;
+}
+
+.dir-result.show { display: block; }
+
+.dir-result-header {
+  background: var(--navy);
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dir-result-header h3 {
+  font-size: 17px;
+}
+
+.dir-result-body {
+  padding: 24px;
+  background: var(--bg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.dir-info-item {
+  background: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.dir-info-icon {
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.dir-info-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+
+.dir-info-val {
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 15px;
+}
+
+/* ─── FORMS ─── */
+.forms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.form-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-color: var(--gold-light);
+}
+
+.form-card-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--gold-pale);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.form-card h3 {
+  color: var(--navy);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.form-card p {
+  color: var(--muted);
+  font-size: 13px;
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--navy);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-download:hover { background: var(--navy-dark); }
+
+/* ─── ELIGIBILITY ─── */
+.checker-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.checker-form {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow);
+}
+
+.checker-q {
+  margin-bottom: 22px;
+}
+
+.checker-q label {
+  display: block;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.radio-group {
+  display: flex;
+  gap: 12px;
+}
+
+.radio-opt {
+  flex: 1;
+  position: relative;
+}
+
+.radio-opt input[type="radio"] { display: none; }
+
+.radio-opt label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--muted);
+  transition: all 0.2s;
+  margin: 0;
+}
+
+.radio-opt input:checked + label {
+  border-color: var(--navy);
+  background: #eef3ff;
+  color: var(--navy);
+}
+
+.check-submit {
+  width: 100%;
+  background: var(--navy);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.check-submit:hover { background: var(--navy-dark); }
+
+.checker-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-highlight {
+  background: var(--navy);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  color: white;
+}
+
+.info-highlight h3 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--gold);
+}
+
+.info-highlight ul {
+  list-style: none;
+}
+
+.info-highlight ul li {
+  padding: 8px 0;
+  font-size: 14px;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.info-highlight ul li:last-child { border: none; }
+
+.result-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  display: none;
+}
+
+.result-card.show { display: block; }
+
+.result-eligible {
+  border-left: 5px solid #22c55e;
+}
+
+.result-not {
+  border-left: 5px solid #ef4444;
+}
+
+.result-icon { font-size: 42px; margin-bottom: 12px; }
+
+.result-title {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 8px;
+}
+
+.result-eligible .result-title { color: #16a34a; }
+.result-not .result-title { color: #dc2626; }
+.result-card p { color: var(--muted); font-size: 14px; }
+
+/* ─── FAQ ─── */
+.faq-wrap { max-width: 760px; margin: auto; }
+
+.faq-item {
+  background: white;
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.faq-item.open { box-shadow: var(--shadow); }
+
+.faq-q {
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  color: var(--navy);
+  user-select: none;
+  gap: 16px;
+}
+
+.faq-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform 0.3s;
+  font-weight: 700;
+}
+
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s;
+}
+
+.faq-a-inner {
+  padding: 0 24px 22px;
+  color: var(--muted);
+  font-size: 14px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.faq-item.open .faq-a { max-height: 300px; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--navy-dark);
+  color: white;
+  padding: 70px 0 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 50px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-brand .logo-main { color: white; }
+.footer-brand .logo-sub { color: var(--gold); }
+
+.footer-tagline {
+  margin-top: 16px;
+  font-size: 14px;
+  opacity: 0.65;
+  line-height: 1.7;
+  max-width: 280px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.contact-item a { color: var(--gold-light); }
+
+.footer-col h4 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.footer-links { list-style: none; }
+
+.footer-links li { margin-bottom: 12px; }
+
+.footer-links a {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: white; }
+
+.helpline-footer {
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--gold);
+  font-family: "Poppins", sans-serif;
+}
+
+.helpline-footer-label {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  opacity: 0.5;
+}
+
+/* ─── MOBILE MENU ─── */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: white;
+  padding: 16px 24px 24px;
+  border-top: 1px solid var(--border);
+}
+
+.mobile-menu a {
+  padding: 12px 0;
+  font-weight: 600;
+  color: var(--navy);
+  border-bottom: 1px solid var(--border);
+  font-family: "Poppins", sans-serif;
+}
+
+.mobile-menu.show { display: flex; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid::before { display: none; }
+  .checker-wrap { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-left h1 { font-size: 38px; }
+  .hero-card { display: none; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .dir-result-body { grid-template-columns: 1fr; }
+  .section { padding: 70px 0; }
+  .section-title h2 { font-size: 28px; }
+}
+
+@media (max-width: 480px) {
+  .steps-grid { grid-template-columns: 1fr; }
+  .forms-grid { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="logo">
+        <div class="logo-icon">⚖️</div>
+        <div class="logo-text">
+          <span class="logo-main">Equitas Aid</span>
+          <span class="logo-sub" id="logoSub">कानूनी सहायता</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#home" class="active" data-hi="होम" data-en="Home">होम</a>
+        <a href="#steps" data-hi="मार्गदर्शिका" data-en="Guide">मार्गदर्शिका</a>
+        <a href="#dlsa" data-hi="DLSA" data-en="DLSA">DLSA</a>
+        <a href="#forms" data-hi="फॉर्म" data-en="Forms">फॉर्म</a>
+        <a href="#checker" data-hi="पात्रता" data-en="Eligibility">पात्रता</a>
+        <a href="#faq" data-hi="FAQ" data-en="FAQ">FAQ</a>
+      </div>
+      <div class="lang-toggle">
+        <button class="lang-btn" onclick="toggleLang()">
+          <span id="langFlag">🇮🇳</span>
+          <span id="langLabel">हिंदी / EN</span>
+        </button>
+        <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home" onclick="toggleMenu()" data-hi="होम" data-en="Home">होम</a>
+      <a href="#steps" onclick="toggleMenu()" data-hi="मार्गदर्शिका" data-en="Guide">मार्गदर्शिका</a>
+      <a href="#dlsa" onclick="toggleMenu()" data-hi="DLSA" data-en="DLSA">DLSA</a>
+      <a href="#forms" onclick="toggleMenu()" data-hi="फॉर्म" data-en="Forms">फॉर्म</a>
+      <a href="#checker" onclick="toggleMenu()" data-hi="पात्रता" data-en="Eligibility">पात्रता</a>
+      <a href="#faq" onclick="toggleMenu()" data-hi="FAQ" data-en="FAQ">FAQ</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left fade-up">
+        <span class="badge" id="heroBadge">निःशुल्क कानूनी सेवा</span>
+        <h1 id="heroTitle">अपना हक<br><span>जानो</span></h1>
+        <p class="hero-sub" id="heroSub">निःशुल्क कानूनी सहायता हर पात्र नागरिक का अधिकार है। DLSA आपकी मदद के लिए है।</p>
+        <div class="helpline-block">
+          <div>
+            <div class="helpline-label" id="hlLabel">राष्ट्रीय हेल्पलाइन</div>
+            <div class="helpline-num">1516</div>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a class="btn-primary" href="https://wa.me/919425000000" id="heroBtn">💬 WhatsApp सहायता</a>
+          <a class="btn-outline" href="#steps" id="heroBtn2">जानें कैसे →</a>
+        </div>
+      </div>
+      <div class="fade-up hero-card">
+        <div class="hero-card-header">
+          <div class="hero-card-icon">⚖️</div>
+          <div>
+            <h3 id="hcTitle">Equitas Aid</h3>
+            <p style="font-size:13px;color:var(--muted)" id="hcSub">आपकी कानूनी सहायता का केंद्र</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-num">50+</div>
+            <div class="stat-label" id="stat1L">जिले MP</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">₹0</div>
+            <div class="stat-label" id="stat2L">वकील शुल्क</div>
+          </div>
+        </div>
+        <ul class="feature-list" id="featureList">
+          <li><span class="check">✓</span> <span>DLSA जानकारी</span></li>
+          <li><span class="check">✓</span> <span>RTI आवेदन फॉर्म</span></li>
+          <li><span class="check">✓</span> <span>पात्रता जांच</span></li>
+          <li><span class="check">✓</span> <span>निःशुल्क वकील</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STEPS ── -->
+<section class="section section-alt" id="steps">
+  <div class="container">
+    <div class="section-title fade-up">
+      <span class="badge" id="stepBadge">चरण-दर-चरण</span>
+      <h2 id="stepsTitle">कानूनी सहायता कैसे मिलेगी?</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card fade-up">
+        <div class="step-num">1</div>
+        <span class="step-icon">🏛️</span>
+        <h3 id="s1h">DLSA जाएँ</h3>
+        <p id="s1p">अपने जिले के DLSA कार्यालय में जाकर संपर्क करें।</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">2</div>
+        <span class="step-icon">📄</span>
+        <h3 id="s2h">दस्तावेज़ दें</h3>
+        <p id="s2p">पहचान पत्र, आय प्रमाण और केस से जुड़े कागज़ात जमा करें।</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">3</div>
+        <span class="step-icon">🔍</span>
+        <h3 id="s3h">सत्यापन</h3>
+        <p id="s3p">आपकी पात्रता की जांच की जाएगी।</p>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">4</div>
+        <span class="step-icon">👨‍⚖️</span>
+        <h3 id="s4h">वकील मिलेगा</h3>
+        <p id="s4p">पात्र होने पर निःशुल्क अधिवक्ता नियुक्त किया जाएगा।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DLSA DIRECTORY ── -->
+<section class="section" id="dlsa">
+  <div class="container">
+    <div class="section-title fade-up">
+      <span class="badge" id="dlsaBadge">मध्यप्रदेश</span>
+      <h2 id="dlsaTitle">DLSA Directory</h2>
+      <p id="dlsaSub">अपना जिला चुनें और DLSA की जानकारी देखें</p>
+      <div class="gold-line"></div>
+    </div>
+    <div class="dir-wrap fade-up">
+      <div class="dir-top">
+        <div class="form-group">
+          <label id="distLabel">जिला चुनें</label>
+          <select class="styled-select" id="districtSelect" onchange="showDistrict()">
+            <option value="">-- जिला चुनें --</option>
+            <option value="jabalpur">जबलपुर</option>
+            <option value="bhopal">भोपाल</option>
+            <option value="indore">इंदौर</option>
+            <option value="gwalior">ग्वालियर</option>
+            <option value="sagar">सागर</option>
+            <option value="rewa">रीवा</option>
+            <option value="satna">सतना</option>
+            <option value="ujjain">उज्जैन</option>
+          </select>
+        </div>
+      </div>
+      <div class="dir-result" id="dirResult">
+        <div class="dir-result-header">
+          <span>📍</span>
+          <h3 id="distName">—</h3>
+        </div>
+        <div class="dir-result-body">
+          <div class="dir-info-item">
+            <span class="dir-info-icon">🏛️</span>
+            <div>
+              <div class="dir-info-label" id="addrLbl">पता</div>
+              <div class="dir-info-val" id="distAddr">—</div>
+            </div>
+          </div>
+          <div class="dir-info-item">
+            <span class="dir-info-icon">📞</span>
+            <div>
+              <div class="dir-info-label" id="phoneLbl">फोन</div>
+              <div class="dir-info-val" id="distPhone">—</div>
+            </div>
+          </div>
+          <div class="dir-info-item">
+            <span class="dir-info-icon">⏰</span>
+            <div>
+              <div class="dir-info-label" id="timeLbl">समय</div>
+              <div class="dir-info-val" id="distTime">सोम–शनि, 10am–5pm</div>
+            </div>
+          </div>
+          <div class="dir-info-item">
+            <span class="dir-info-icon">📧</span>
+            <div>
+              <div class="dir-info-label" id="emailLbl">हेल्पलाइन</div>
+              <div class="dir-info-val">1516</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FORMS ── -->
+<section class="section section-alt" id="forms">
+  <div class="container">
+    <div class="section-title fade-up">
+      <span class="badge" id="formsBadge">डाउनलोड करें</span>
+      <h2 id="formsTitle">फॉर्म एवं RTI</h2>
+      <p id="formsSub">सभी ज़रूरी कानूनी फॉर्म यहाँ से डाउनलोड करें</p>
+      <div class="gold-line"></div>
+    </div>
+    <div class="forms-grid">
+      <div class="form-card fade-up">
+        <div class="form-card-icon">📋</div>
+        <h3 id="fc1h">कानूनी सहायता फॉर्म</h3>
+        <p id="fc1p">DLSA में आवेदन के लिए मुख्य फॉर्म।</p>
+        <a href="#" class="btn-download" id="fd1">⬇ डाउनलोड</a>
+      </div>
+      <div class="form-card fade-up">
+        <div class="form-card-icon">📝</div>
+        <h3 id="fc2h">RTI आवेदन</h3>
+        <p id="fc2p">सूचना के अधिकार के लिए आवेदन फॉर्म।</p>
+        <a href="#" class="btn-download" id="fd2">⬇ डाउनलोड</a>
+      </div>
+      <div class="form-card fade-up">
+        <div class="form-card-icon">📃</div>
+        <h3 id="fc3h">शपथ पत्र प्रारूप</h3>
+        <p id="fc3p">न्यायालय में उपयोग होने वाला शपथ पत्र।</p>
+        <a href="#" class="btn-download" id="fd3">⬇ डाउनलोड</a>
+      </div>
+      <div class="form-card fade-up">
+        <div class="form-card-icon">📨</div>
+        <h3 id="fc4h">शिकायत प्रारूप</h3>
+        <p id="fc4p">पुलिस या अदालत में शिकायत दर्ज करने का फॉर्म।</p>
+        <a href="#" class="btn-download" id="fd4">⬇ डाउनलोड</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ELIGIBILITY CHECKER ── -->
+<section class="section" id="checker">
+  <div class="container">
+    <div class="section-title fade-up">
+      <span class="badge" id="checkBadge">स्वयं जांचें</span>
+      <h2 id="checkTitle">पात्रता जांच</h2>
+      <p id="checkSub">4 सरल सवालों से जानें कि आप पात्र हैं या नहीं</p>
+      <div class="gold-line"></div>
+    </div>
+    <div class="checker-wrap">
+      <div class="checker-form fade-up">
+        <div class="checker-q">
+          <label id="q1">1. क्या आपकी वार्षिक आय ₹1 लाख से कम है?</label>
+          <div class="radio-group">
+            <div class="radio-opt">
+              <input type="radio" name="income" id="inc_y" value="yes" checked>
+              <label for="inc_y" id="yesLbl1">✓ हाँ</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="income" id="inc_n" value="no">
+              <label for="inc_n" id="noLbl1">✗ नहीं</label>
+            </div>
+          </div>
+        </div>
+        <div class="checker-q">
+          <label id="q2">2. क्या आप SC / ST / OBC वर्ग से हैं?</label>
+          <div class="radio-group">
+            <div class="radio-opt">
+              <input type="radio" name="caste" id="cast_y" value="yes" checked>
+              <label for="cast_y" id="yesLbl2">✓ हाँ</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="caste" id="cast_n" value="no">
+              <label for="cast_n" id="noLbl2">✗ नहीं</label>
+            </div>
+          </div>
+        </div>
+        <div class="checker-q">
+          <label id="q3">3. क्या आप महिला / बच्चे / वरिष्ठ नागरिक हैं?</label>
+          <div class="radio-group">
+            <div class="radio-opt">
+              <input type="radio" name="special" id="spec_y" value="yes" checked>
+              <label for="spec_y" id="yesLbl3">✓ हाँ</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="special" id="spec_n" value="no">
+              <label for="spec_n" id="noLbl3">✗ नहीं</label>
+            </div>
+          </div>
+        </div>
+        <div class="checker-q">
+          <label id="q4">4. क्या मामला किसी कानूनी विवाद से जुड़ा है?</label>
+          <div class="radio-group">
+            <div class="radio-opt">
+              <input type="radio" name="legal" id="leg_y" value="yes" checked>
+              <label for="leg_y" id="yesLbl4">✓ हाँ</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="legal" id="leg_n" value="no">
+              <label for="leg_n" id="noLbl4">✗ नहीं</label>
+            </div>
+          </div>
+        </div>
+        <button class="check-submit" onclick="checkEligibility()" id="checkBtn">
+          ⚖️ <span id="checkBtnText">पात्रता जांचें</span>
+        </button>
+      </div>
+      <div class="checker-info">
+        <div class="info-highlight fade-up">
+          <h3 id="whoTitle">कौन पात्र है?</h3>
+          <ul id="whoList">
+            <li>✦ सभी महिलाएँ</li>
+            <li>✦ 18 वर्ष से कम बच्चे</li>
+            <li>✦ SC / ST वर्ग के नागरिक</li>
+            <li>✦ ₹1 लाख से कम वार्षिक आय</li>
+            <li>✦ विकलांग नागरिक</li>
+            <li>✦ हिरासत में लिए गए व्यक्ति</li>
+          </ul>
+        </div>
+        <div class="result-card" id="resultCard">
+          <div class="result-icon" id="resultIcon">—</div>
+          <div class="result-title" id="resultTitle">—</div>
+          <p id="resultText">—</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="section section-alt" id="faq">
+  <div class="container">
+    <div class="section-title fade-up">
+      <span class="badge" id="faqBadge">सामान्य प्रश्न</span>
+      <h2 id="faqTitle">अक्सर पूछे जाने वाले सवाल</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="faq-wrap fade-up" id="faqWrap"></div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">⚖️</div>
+          <div class="logo-text">
+            <span class="logo-main">Equitas Aid</span>
+            <span class="logo-sub" id="footLogoSub">कानूनी सहायता</span>
+          </div>
+        </div>
+        <p class="footer-tagline" id="footTagline">
+          न्याय सबके लिए है। Equitas Aid आपको आपके अधिकारों तक पहुँचाने में मदद करता है।
+        </p>
+        <div class="contact-item">
+          💬 <a href="https://wa.me/919425000000" id="footWA">WhatsApp सहायता</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 id="footLinksTitle">Quick Links</h4>
+        <ul class="footer-links" id="footLinks">
+          <li><a href="#steps">कानूनी सहायता कैसे मिलेगी</a></li>
+          <li><a href="#dlsa">DLSA Directory</a></li>
+          <li><a href="#forms">फॉर्म डाउनलोड</a></li>
+          <li><a href="#checker">पात्रता जांच</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 id="footHelpTitle">हेल्पलाइन</h4>
+        <div class="helpline-footer-label" id="footHlLabel">राष्ट्रीय कानूनी सहायता</div>
+        <div class="helpline-footer">1516</div>
+        <p style="font-size:13px;opacity:0.6;margin-top:10px" id="footHours">सोमवार–शनिवार<br>सुबह 10 बजे – शाम 5 बजे</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span id="footCopy">© 2026 Equitas Aid. सर्वाधिकार सुरक्षित।</span>
+      <span id="footCredit">Ghanshyam Kushwaha द्वारा निर्मित</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+let lang = "hi";
+
+/* ─── District Data ─── */
+const districts = {
+  jabalpur: {
+    hi: { name:"जबलपुर", addr:"जिला न्यायालय परिसर, जबलपुर, म.प्र.", phone:"0761-2623101" },
+    en: { name:"Jabalpur", addr:"District Court Campus, Jabalpur, M.P.", phone:"0761-2623101" }
+  },
+  bhopal: {
+    hi: { name:"भोपाल", addr:"DLSA भोपाल, कलेक्ट्रेट परिसर, भोपाल", phone:"0755-2441301" },
+    en: { name:"Bhopal", addr:"DLSA Bhopal, Collectorate Campus, Bhopal", phone:"0755-2441301" }
+  },
+  indore: {
+    hi: { name:"इंदौर", addr:"जिला न्यायालय परिसर, इंदौर, म.प्र.", phone:"0731-2521101" },
+    en: { name:"Indore", addr:"District Court Campus, Indore, M.P.", phone:"0731-2521101" }
+  },
+  gwalior: {
+    hi: { name:"ग्वालियर", addr:"DLSA ग्वालियर, जिला न्यायालय परिसर", phone:"0751-2340201" },
+    en: { name:"Gwalior", addr:"DLSA Gwalior, District Court Campus", phone:"0751-2340201" }
+  },
+  sagar: {
+    hi: { name:"सागर", addr:"जिला न्यायालय परिसर, सागर, म.प्र.", phone:"07582-226101" },
+    en: { name:"Sagar", addr:"District Court Campus, Sagar, M.P.", phone:"07582-226101" }
+  },
+  rewa: {
+    hi: { name:"रीवा", addr:"DLSA रीवा, जिला न्यायालय, रीवा", phone:"07662-250101" },
+    en: { name:"Rewa", addr:"DLSA Rewa, District Court, Rewa", phone:"07662-250101" }
+  },
+  satna: {
+    hi: { name:"सतना", addr:"जिला न्यायालय परिसर, सतना, म.प्र.", phone:"07672-222101" },
+    en: { name:"Satna", addr:"District Court Campus, Satna, M.P.", phone:"07672-222101" }
+  },
+  ujjain: {
+    hi: { name:"उज्जैन", addr:"DLSA उज्जैन, जिला न्यायालय परिसर", phone:"0734-2512201" },
+    en: { name:"Ujjain", addr:"DLSA Ujjain, District Court Campus", phone:"0734-2512201" }
+  }
+};
+
+function showDistrict() {
+  const val = document.getElementById("districtSelect").value;
+  const result = document.getElementById("dirResult");
+  if (!val) { result.classList.remove("show"); return; }
+  const d = districts[val][lang];
+  document.getElementById("distName").textContent = d.name;
+  document.getElementById("distAddr").textContent = d.addr;
+  document.getElementById("distPhone").textContent = d.phone;
+  document.getElementById("distTime").textContent = lang === "hi" ? "सोम–शनि, 10am–5pm" : "Mon–Sat, 10am–5pm";
+  result.classList.add("show");
+}
+
+/* ─── FAQ Data ─── */
+const faqs = {
+  hi: [
+    ["निःशुल्क कानूनी सहायता क्या है?", "यह सरकार द्वारा प्रदान की जाने वाली मुफ्त कानूनी सेवा है जो आर्थिक रूप से कमज़ोर और पात्र नागरिकों को मिलती है। इसमें वकील की फीस, न्यायालय शुल्क आदि सब कुछ मुफ्त होता है।"],
+    ["DLSA का पूरा नाम क्या है?", "District Legal Services Authority — जिला विधिक सेवा प्राधिकरण। यह हर जिले में होता है और निःशुल्क कानूनी सेवाएँ देता है।"],
+    ["1516 हेल्पलाइन क्या है?", "यह भारत सरकार की राष्ट्रीय कानूनी सहायता हेल्पलाइन है। इस पर कभी भी फोन करके कानूनी सलाह प्राप्त की जा सकती है।"],
+    ["क्या महिलाएँ स्वतः पात्र हैं?", "हाँ, Legal Services Authorities Act, 1987 के अनुसार सभी महिलाएँ निःशुल्क कानूनी सहायता के लिए पात्र हैं।"],
+    ["RTI फॉर्म कैसे भरें?", "RTI आवेदन में अपना नाम, पता, जो जानकारी चाहिए उसका विवरण और ₹10 का शुल्क शामिल होता है। फॉर्म ऊपर डाउनलोड करें।"],
+    ["क्या अपील की जा सकती है?", "हाँ। अगर आवेदन खारिज हो जाए, तो आप State Legal Services Authority में अपील कर सकते हैं।"]
+  ],
+  en: [
+    ["What is free legal aid?", "It is a free legal service provided by the government to economically weaker and eligible citizens. It covers lawyer fees, court charges, and all related expenses."],
+    ["What is DLSA?", "District Legal Services Authority — present in every district, it provides free legal services to eligible citizens under the Legal Services Authorities Act, 1987."],
+    ["What is the 1516 helpline?", "It is the National Legal Aid Helpline of India. You can call anytime to get free legal advice and guidance."],
+    ["Are women automatically eligible?", "Yes. Under the Legal Services Authorities Act, 1987, all women are eligible for free legal aid regardless of their income."],
+    ["How to fill an RTI form?", "An RTI application needs your name, address, details of information required, and a fee of ₹10. Download the form from the Forms section above."],
+    ["Can I appeal if denied?", "Yes. If your application is rejected, you can appeal to the State Legal Services Authority (SLSA)."]
+  ]
+};
+
+function loadFAQ() {
+  const wrap = document.getElementById("faqWrap");
+  wrap.innerHTML = "";
+  faqs[lang].forEach(([q, a]) => {
+    const item = document.createElement("div");
+    item.className = "faq-item";
+    item.innerHTML = `
+      <div class="faq-q">
+        ${q}
+        <div class="faq-icon">+</div>
+      </div>
+      <div class="faq-a"><div class="faq-a-inner">${a}</div></div>
+    `;
+    item.querySelector(".faq-q").onclick = () => item.classList.toggle("open");
+    wrap.appendChild(item);
+  });
+}
+
+/* ─── Eligibility Checker ─── */
+function checkEligibility() {
+  const income = document.querySelector('input[name="income"]:checked').value;
+  const caste = document.querySelector('input[name="caste"]:checked').value;
+  const special = document.querySelector('input[name="special"]:checked').value;
+  const legal = document.querySelector('input[name="legal"]:checked').value;
+
+  const card = document.getElementById("resultCard");
+  card.className = "result-card show";
+
+  if (legal === "no") {
+    card.classList.add("result-not");
+    document.getElementById("resultIcon").textContent = "❌";
+    document.getElementById("resultTitle").textContent = lang === "hi" ? "पात्र नहीं" : "Not Eligible";
+    document.getElementById("resultText").textContent = lang === "hi"
+      ? "आपका मामला किसी कानूनी विवाद से संबंधित नहीं है, इसलिए कानूनी सहायता लागू नहीं होती।"
+      : "Your matter is not related to a legal dispute, so legal aid is not applicable.";
+    return;
+  }
+
+  if (income === "yes" || caste === "yes" || special === "yes") {
+    card.classList.add("result-eligible");
+    document.getElementById("resultIcon").textContent = "✅";
+    document.getElementById("resultTitle").textContent = lang === "hi" ? "आप पात्र हैं!" : "You are Eligible!";
+    document.getElementById("resultText").textContent = lang === "hi"
+      ? "आप निःशुल्क कानूनी सहायता के पात्र हो सकते हैं। कृपया DLSA कार्यालय से संपर्क करें।"
+      : "You may be eligible for free legal aid. Please contact your nearest DLSA office.";
+  } else {
+    card.classList.add("result-not");
+    document.getElementById("resultIcon").textContent = "⚠️";
+    document.getElementById("resultTitle").textContent = lang === "hi" ? "पात्रता अस्पष्ट" : "Eligibility Unclear";
+    document.getElementById("resultText").textContent = lang === "hi"
+      ? "दी गई जानकारी के आधार पर पात्रता स्पष्ट नहीं है। DLSA से सीधे संपर्क करें।"
+      : "Eligibility is not clear based on the provided information. Please contact DLSA directly.";
+  }
+}
+
+/* ─── Language Toggle ─── */
+const translations = {
+  logoSub:      { hi: "कानूनी सहायता", en: "Legal Aid" },
+  heroBadge:    { hi: "निःशुल्क कानूनी सेवा", en: "Free Legal Service" },
+  heroTitle:    { hi: "अपना हक<br><span>जानो</span>", en: "Know Your<br><span>Rights</span>" },
+  heroSub:      { hi: "निःशुल्क कानूनी सहायता हर पात्र नागरिक का अधिकार है। DLSA आपकी मदद के लिए है।", en: "Free legal aid is the right of every eligible citizen. DLSA is here to help you." },
+  hlLabel:      { hi: "राष्ट्रीय हेल्पलाइन", en: "National Helpline" },
+  heroBtn:      { hi: "💬 WhatsApp सहायता", en: "💬 WhatsApp Help" },
+  heroBtn2:     { hi: "जानें कैसे →", en: "Learn How →" },
+  hcTitle:      { hi: "Equitas Aid", en: "Equitas Aid" },
+  hcSub:        { hi: "आपकी कानूनी सहायता का केंद्र", en: "Your Legal Aid Centre" },
+  stat1L:       { hi: "जिले MP", en: "Districts MP" },
+  stat2L:       { hi: "वकील शुल्क", en: "Lawyer Fee" },
+  stepBadge:    { hi: "चरण-दर-चरण", en: "Step by Step" },
+  stepsTitle:   { hi: "कानूनी सहायता कैसे मिलेगी?", en: "How to Get Legal Aid?" },
+  s1h:          { hi: "DLSA जाएँ", en: "Visit DLSA" },
+  s1p:          { hi: "अपने जिले के DLSA कार्यालय में जाकर संपर्क करें।", en: "Visit your district DLSA office and make contact." },
+  s2h:          { hi: "दस्तावेज़ दें", en: "Submit Documents" },
+  s2p:          { hi: "पहचान पत्र, आय प्रमाण और केस से जुड़े कागज़ात जमा करें।", en: "Submit ID proof, income certificate, and case-related documents." },
+  s3h:          { hi: "सत्यापन", en: "Verification" },
+  s3p:          { hi: "आपकी पात्रता की जांच की जाएगी।", en: "Your eligibility will be verified by officials." },
+  s4h:          { hi: "वकील मिलेगा", en: "Get a Lawyer" },
+  s4p:          { hi: "पात्र होने पर निःशुल्क अधिवक्ता नियुक्त किया जाएगा।", en: "If eligible, a free advocate will be assigned to you." },
+  dlsaBadge:    { hi: "मध्यप्रदेश", en: "Madhya Pradesh" },
+  dlsaTitle:    { hi: "DLSA Directory", en: "DLSA Directory" },
+  dlsaSub:      { hi: "अपना जिला चुनें और DLSA की जानकारी देखें", en: "Select your district to view DLSA information" },
+  distLabel:    { hi: "जिला चुनें", en: "Select District" },
+  addrLbl:      { hi: "पता", en: "Address" },
+  phoneLbl:     { hi: "फोन", en: "Phone" },
+  timeLbl:      { hi: "समय", en: "Hours" },
+  emailLbl:     { hi: "हेल्पलाइन", en: "Helpline" },
+  formsBadge:   { hi: "डाउनलोड करें", en: "Download" },
+  formsTitle:   { hi: "फॉर्म एवं RTI", en: "Forms & RTI" },
+  formsSub:     { hi: "सभी ज़रूरी कानूनी फॉर्म यहाँ से डाउनलोड करें", en: "Download all important legal forms from here" },
+  fc1h:         { hi: "कानूनी सहायता फॉर्म", en: "Legal Aid Form" },
+  fc1p:         { hi: "DLSA में आवेदन के लिए मुख्य फॉर्म।", en: "Main application form for DLSA." },
+  fd1:          { hi: "⬇ डाउनलोड", en: "⬇ Download" },
+  fc2h:         { hi: "RTI आवेदन", en: "RTI Application" },
+  fc2p:         { hi: "सूचना के अधिकार के लिए आवेदन फॉर्म।", en: "Application form for Right to Information." },
+  fd2:          { hi: "⬇ डाउनलोड", en: "⬇ Download" },
+  fc3h:         { hi: "शपथ पत्र प्रारूप", en: "Affidavit Format" },
+  fc3p:         { hi: "न्यायालय में उपयोग होने वाला शपथ पत्र।", en: "Affidavit used in court proceedings." },
+  fd3:          { hi: "⬇ डाउनलोड", en: "⬇ Download" },
+  fc4h:         { hi: "शिकायत प्रारूप", en: "Complaint Format" },
+  fc4p:         { hi: "पुलिस या अदालत में शिकायत दर्ज करने का फॉर्म।", en: "Form for filing complaints with police or court." },
+  fd4:          { hi: "⬇ डाउनलोड", en: "⬇ Download" },
+  checkBadge:   { hi: "स्वयं जांचें", en: "Self Check" },
+  checkTitle:   { hi: "पात्रता जांच", en: "Eligibility Checker" },
+  checkSub:     { hi: "4 सरल सवालों से जानें कि आप पात्र हैं या नहीं", en: "Answer 4 simple questions to check your eligibility" },
+  q1:           { hi: "1. क्या आपकी वार्षिक आय ₹1 लाख से कम है?", en: "1. Is your annual income below ₹1 Lakh?" },
+  yesLbl1:      { hi: "✓ हाँ", en: "✓ Yes" },
+  noLbl1:       { hi: "✗ नहीं", en: "✗ No" },
+  q2:           { hi: "2. क्या आप SC / ST / OBC वर्ग से हैं?", en: "2. Do you belong to SC / ST / OBC category?" },
+  yesLbl2:      { hi: "✓ हाँ", en: "✓ Yes" },
+  noLbl2:       { hi: "✗ नहीं", en: "✗ No" },
+  q3:           { hi: "3. क्या आप महिला / बच्चे / वरिष्ठ नागरिक हैं?", en: "3. Are you a Woman / Child / Senior Citizen?" },
+  yesLbl3:      { hi: "✓ हाँ", en: "✓ Yes" },
+  noLbl3:       { hi: "✗ नहीं", en: "✗ No" },
+  q4:           { hi: "4. क्या मामला किसी कानूनी विवाद से जुड़ा है?", en: "4. Is the matter related to a legal dispute?" },
+  yesLbl4:      { hi: "✓ हाँ", en: "✓ Yes" },
+  noLbl4:       { hi: "✗ नहीं", en: "✗ No" },
+  checkBtnText: { hi: "पात्रता जांचें", en: "Check Eligibility" },
+  whoTitle:     { hi: "कौन पात्र है?", en: "Who is Eligible?" },
+  faqBadge:     { hi: "सामान्य प्रश्न", en: "Common Questions" },
+  faqTitle:     { hi: "अक्सर पूछे जाने वाले सवाल", en: "Frequently Asked Questions" },
+  footLogoSub:  { hi: "कानूनी सहायता", en: "Legal Aid" },
+  footTagline:  { hi: "न्याय सबके लिए है। Equitas Aid आपको आपके अधिकारों तक पहुँचाने में मदद करता है।", en: "Justice is for all. Equitas Aid helps you reach your rights." },
+  footWA:       { hi: "WhatsApp सहायता", en: "WhatsApp Help" },
+  footLinksTitle:{ hi: "Quick Links", en: "Quick Links" },
+  footHelpTitle: { hi: "हेल्पलाइन", en: "Helpline" },
+  footHlLabel:  { hi: "राष्ट्रीय कानूनी सहायता", en: "National Legal Aid" },
+  footHours:    { hi: "सोमवार–शनिवार<br>सुबह 10 बजे – शाम 5 बजे", en: "Monday–Saturday<br>10 AM – 5 PM" },
+  footCopy:     { hi: "© 2026 Equitas Aid. सर्वाधिकार सुरक्षित।", en: "© 2026 Equitas Aid. All rights reserved." },
+  footCredit:   { hi: "Ghanshyam Kushwaha द्वारा निर्मित", en: "Made by Ghanshyam Kushwaha" },
+  whoList:      {
+    hi: "✦ सभी महिलाएँ|✦ 18 वर्ष से कम बच्चे|✦ SC / ST वर्ग के नागरिक|✦ ₹1 लाख से कम वार्षिक आय|✦ विकलांग नागरिक|✦ हिरासत में लिए गए व्यक्ति",
+    en: "✦ All women|✦ Children under 18|✦ SC / ST category citizens|✦ Annual income below ₹1 lakh|✦ Persons with disabilities|✦ Persons in custody"
+  },
+  featureList:  {
+    hi: "DLSA जानकारी|RTI आवेदन फॉर्म|पात्रता जांच|निःशुल्क वकील",
+    en: "DLSA Information|RTI Application Form|Eligibility Check|Free Lawyer"
+  }
+};
+
+function toggleLang() {
+  lang = lang === "hi" ? "en" : "hi";
+  document.documentElement.lang = lang;
+  document.getElementById("langFlag").textContent = lang === "hi" ? "🇮🇳" : "🇬🇧";
+  document.getElementById("langLabel").textContent = lang === "hi" ? "हिंदी / EN" : "EN / हिंदी";
+
+  Object.keys(translations).forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (id === "whoList") {
+      const items = translations[id][lang].split("|");
+      el.innerHTML = items.map(i => `<li>${i}</li>`).join("");
+    } else if (id === "featureList") {
+      const items = translations[id][lang].split("|");
+      el.innerHTML = items.map(i => `<li><span class="check">✓</span> <span>${i}</span></li>`).join("");
+    } else {
+      el.innerHTML = translations[id][lang];
+    }
+  });
+
+  document.querySelectorAll(".nav-links a, .mobile-menu a").forEach(a => {
+    if (a.dataset[lang]) a.textContent = a.dataset[lang];
+  });
+
+  loadFAQ();
+  showDistrict();
+}
+
+/* ─── Hamburger ─── */
+function toggleMenu() {
+  document.getElementById("mobileMenu").classList.toggle("show");
+}
+
+/* ─── Scroll Effects ─── */
+window.addEventListener("scroll", () => {
+  const navbar = document.getElementById("navbar");
+  navbar.classList.toggle("scrolled", window.scrollY > 20);
+
+  const sections = document.querySelectorAll("section");
+  let current = "";
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+  });
+
+  document.querySelectorAll(".nav-links a").forEach(a => {
+    a.classList.toggle("active", a.getAttribute("href") === "#" + current);
+  });
+});
+
+/* ─── Intersection Observer ─── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+/* ─── Init ─── */
+loadFAQ();
+</script>
+</body>
+</html>
